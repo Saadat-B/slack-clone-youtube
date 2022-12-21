@@ -1,10 +1,14 @@
 import { addDoc, collection } from "firebase/firestore";
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { enterRoom } from "../features/appSlice";
 import { db } from "../firebase";
 
 const SidebarOption = ({ Icon, title, addChannelOption, id }) => {
   const colref = collection(db, "rooms");
+
+  const dispatch = useDispatch();
 
   // console.log(channels);
 
@@ -18,7 +22,15 @@ const SidebarOption = ({ Icon, title, addChannelOption, id }) => {
     }
   };
 
-  const selectChannel = () => {};
+  const selectChannel = () => {
+    if (id) {
+      dispatch(
+        enterRoom({
+          roomId: id,
+        })
+      );
+    }
+  };
 
   return (
     <SidebarOptionContainer
