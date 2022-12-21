@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Sidebar from "./components/Sidebar";
 
 function App() {
+  document.title = "Slack";
   return (
     <div className="app">
       <Router>
