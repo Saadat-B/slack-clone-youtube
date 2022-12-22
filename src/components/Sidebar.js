@@ -22,7 +22,7 @@ import SidebarOption from "./SidebarOption";
 const Sidebar = () => {
   const colref = collection(db, "rooms");
 
-  const [channels, loading, error] = useCollection(colref);
+  const [channels] = useCollection(colref);
 
   return (
     <SidebarContainer>

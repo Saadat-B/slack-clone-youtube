@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import styled from "styled-components";
 import Sidebar from "./components/Sidebar";
+import Chat from "./components/Chat";
 
 function App() {
   document.title = "Slack";
@@ -14,7 +15,7 @@ function App() {
         <AppBody>
           <Sidebar />
           <Routes>
-            <Route path="/" />
+            <Route path="/" element={<Chat />} />
           </Routes>
         </AppBody>
       </Router>
