@@ -5,19 +5,28 @@ import Header from "./components/Header";
 import styled from "styled-components";
 import Sidebar from "./components/Sidebar";
 import Chat from "./components/Chat";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase";
+import Login from "./components/Login";
 
 function App() {
-  document.title = "Slack";
+  const [user, loading] = useAuthState(auth);
   return (
     <div className="app">
       <Router>
-        <Header />
-        <AppBody>
-          <Sidebar />
-          <Routes>
-            <Route path="/" element={<Chat />} />
-          </Routes>
-        </AppBody>
+        {!user ? (
+          <Login />
+        ) : (
+          <>
+            <Header />
+            <AppBody>
+              <Sidebar />
+              <Routes>
+                <Route path="/" element={<Chat />} />
+              </Routes>
+            </AppBody>
+          </>
+        )}
       </Router>
     </div>
   );
