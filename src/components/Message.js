@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Message = ({ message, timestamp, user, userImage }) => {
   return (
     <MessageContainer>
-      <img src={userImage} alt="img" />
+      <img src={userImage} alt=" " />
       <MessageInfo>
         <h4>
           {user} <span>{new Date(timestamp?.toDate()).toUTCString()}</span>

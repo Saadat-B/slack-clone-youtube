@@ -14,12 +14,15 @@ import {
 } from "@mui/icons-material";
 import { collection } from "firebase/firestore";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import styled from "styled-components";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import SidebarOption from "./SidebarOption";
 
 const Sidebar = () => {
+  const [user] = useAuthState(auth);
+
   const colref = collection(db, "rooms");
 
   const [channels] = useCollection(colref);
@@ -28,10 +31,10 @@ const Sidebar = () => {
     <SidebarContainer>
       <SidebarHeader>
         <SidebarInfo>
-          <h2>PAPA FAM HQ</h2>
+          <h2>SLACK HQ</h2>
           <h3>
             <FiberManualRecord />
-            Saadat Badgujar
+            {user.displayName}
           </h3>
         </SidebarInfo>
         <Create />
@@ -66,6 +69,10 @@ const SidebarContainer = styled.div`
   border-top: 1px solid #49274b;
   max-width: 260px;
   margin-top: 60px;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    background-color: transparent;
+  }
 
   > hr {
     margin-top: 10px;
